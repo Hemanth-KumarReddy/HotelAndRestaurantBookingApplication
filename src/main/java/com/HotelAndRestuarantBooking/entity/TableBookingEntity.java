@@ -14,8 +14,6 @@ public class TableBookingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long customerId;
-
     private Long tableId;
 
     private LocalDateTime bookingTime;
@@ -23,4 +21,13 @@ public class TableBookingEntity {
     private String status;
 
     private Long roomBookingId;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customerEntity;
+
+    @ManyToOne
+    @JoinColumn(name="restuarantTable_id")
+    private RestaurantTableEntity restaurantTableEntity;
+
 }

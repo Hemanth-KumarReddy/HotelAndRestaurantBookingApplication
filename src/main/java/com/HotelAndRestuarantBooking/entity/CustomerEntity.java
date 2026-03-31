@@ -6,6 +6,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -33,4 +34,10 @@ public class CustomerEntity {
 
     @Column(nullable = false)
     private String Status;
+
+    @OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<RoomBookingEntity> roomBookings;
+
+    @OneToMany(mappedBy = "customerEntity",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<TableBookingEntity> tableBookings;
 }

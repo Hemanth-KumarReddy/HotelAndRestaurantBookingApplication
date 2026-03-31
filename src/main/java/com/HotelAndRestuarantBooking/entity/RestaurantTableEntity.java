@@ -3,6 +3,8 @@ package com.HotelAndRestuarantBooking.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 @Table(name = "restaurantTables")
@@ -18,5 +20,10 @@ public class RestaurantTableEntity {
 
     private String status;
 
-    private Long branchId;
+    @ManyToOne
+    @JoinColumn(name="branch_id")
+    private BranchEntity branchEntity;
+
+    @OneToMany(mappedBy = "restaurantTableEntity",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<TableBookingEntity> tableBookingEntityList;
 }

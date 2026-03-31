@@ -12,13 +12,18 @@ public class RoomBookingEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long customerId;
-
-    private Long roomId;
-
     private Boolean checkIn;
 
     private Boolean checkOut;
 
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customerEntity;
+
+    @ManyToOne
+    @JoinColumn(name="room_id")
+    private RoomEntity roomEntity;
+
 }
