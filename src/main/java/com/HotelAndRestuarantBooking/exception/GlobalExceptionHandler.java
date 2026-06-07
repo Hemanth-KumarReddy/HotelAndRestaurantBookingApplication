@@ -2,6 +2,7 @@ package com.HotelAndRestuarantBooking.exception;
 
 import com.HotelAndRestuarantBooking.apiResponse.ApiResponse;
 import com.HotelAndRestuarantBooking.constants.ExceptionConstants;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ApiResponse<Map<String, String>> handleValidationErrors(MethodArgumentNotValidException ex){
+    public ResponseEntity<ApiResponse<Map<String, String>>> handleValidationErrors(MethodArgumentNotValidException ex){
 
         Map<String, String> errorsMap = new HashMap<>();
 
@@ -24,10 +25,9 @@ public class GlobalExceptionHandler {
 
         ApiResponse<Map<String, String>> response = new ApiResponse<>(false, ExceptionConstants.API_FAILED, errorsMap);
 
-        return response;
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 }
-
 
 
 
