@@ -27,6 +27,10 @@ public class GlobalExceptionHandler {
 
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public String handleUserAlreadyExistsError(UserAlreadyExistsException ex){
+        return"";
+    }
 }
 
 
