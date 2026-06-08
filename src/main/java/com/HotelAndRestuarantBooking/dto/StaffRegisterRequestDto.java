@@ -7,7 +7,7 @@ import lombok.Data;
 import jakarta.validation.constraints.NotNull;
 
 @Data
-public class CustomerRegisterRequestDto {
+public class StaffRegisterRequestDto {
 
     @NotNull(message = AuthConstants.ERROR_EMAIL_REQUIRED)
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9._%+-]+\\.[a-zA-Z]{2,}$", message = AuthConstants.ERROR_EMAIL_IS_NOT_VALID)
@@ -23,4 +23,10 @@ public class CustomerRegisterRequestDto {
     @NotNull(message = AuthConstants.ERROR_PASSWORD_IS_REQUIRED)
     @Size(min = 6,message = AuthConstants.ERROR_PASSWORD_IS_NOT_INVALID)
     private String password;
+
+    @NotNull(message = AuthConstants.ERROR_ROLE_IS_REQUIRED)
+    private String role;
+
+    @NotNull(message = AuthConstants.ERROR_HOTEL_ID_IS_REQUIRED)
+    private String hotelId;
 }

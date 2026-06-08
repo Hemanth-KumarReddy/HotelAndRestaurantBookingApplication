@@ -1,7 +1,6 @@
-package com.HotelAndRestuarantBooking.service;
+package com.HotelAndRestuarantBooking.service.impl;
 
 import com.HotelAndRestuarantBooking.entity.StaffEntity;
-import com.HotelAndRestuarantBooking.repository.StaffRepository;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,6 +43,8 @@ public class JwtService {
         tokenData.put("id",staffData.getId());
         tokenData.put("name",staffData.getName());
         tokenData.put("email",staffData.getEmail());
+        tokenData.put("role",staffData.getRole());
+        tokenData.put("hotelId",staffData.getHotelId());
 
         String jwtToken = Jwts.builder()
                 .claims().add(tokenData).and()

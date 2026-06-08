@@ -31,4 +31,7 @@ public class StaffEntity {
 
     @Column(nullable = false)
     private String status;
+
+    @Column(nullable = false)
+    private String phone;
 }
