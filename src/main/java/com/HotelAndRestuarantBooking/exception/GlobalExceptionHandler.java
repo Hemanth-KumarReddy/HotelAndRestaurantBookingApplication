@@ -1,6 +1,7 @@
 package com.HotelAndRestuarantBooking.exception;
 
 import com.HotelAndRestuarantBooking.apiResponse.ApiResponse;
+import com.HotelAndRestuarantBooking.constants.AuthConstants;
 import com.HotelAndRestuarantBooking.constants.ExceptionConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,27 +29,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(UserAlreadyExistsException.class)
-    public String handleUserAlreadyExistsError(UserAlreadyExistsException ex){
-        return"";
+    public ResponseEntity<ApiResponse<String>> handleUserAlreadyExistsError(UserAlreadyExistsException ex){
+        ApiResponse<String> response = new ApiResponse<>(false, AuthConstants.ERROR_USER_ALREADY_EXISTS,ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 }
-
-
-
-
-
-
-//@RestControllerAdvice
-//public class GlobalExceptionHandler {
-//
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public ResponseEntity<ApiResponse<Map<String,String>>> handleValidationErrors(MethodArgumentNotValidException ex){
-//
-//        Map<String,String> errorsmap = new HashMap<String, String>();
-//
-//        ex.getBindingResult().getFieldErrors().forEach(error ->{
-//            errorsmap.put(error.getField(),error.getDefaultMessage());
-//        });
-//        ApiResponse<Map<String,String>> response = new ApiResponse<Map<String,String>>(false,ExceptionConstants.API_FAILED, errorsmap);
-//        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-//    }
