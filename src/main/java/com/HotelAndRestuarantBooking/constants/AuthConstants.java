@@ -23,4 +23,10 @@ public class AuthConstants {
     public static final String ERROR_USER_ALREADY_EXISTS = "User already exists";
 
     public static final String SUCCESS_STAFF_REGISTERED = "Staff registered Successfully";
+
+    public static final String ERROR_USER_NOT_FOUND = "User not found. Please register!!";
+
+    public static final String ERROR_USER_INVALID_CREDENTIALS = "Invalid Credentials !!!";
+
+    public static final String SUCCESS_LOGIN_MSG = "Login Success !!!";
 }
