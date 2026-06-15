@@ -23,14 +23,27 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errorsMap.put(error.getField(),error.getDefaultMessage());
         });
-
         ApiResponse<Map<String, String>> response = new ApiResponse<>(false, ExceptionConstants.API_FAILED, errorsMap);
-
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ApiResponse<String>> handleUserNotFoundError(UserNotFoundException ex){
+        ApiResponse<String> response = new ApiResponse<>(false,AuthConstants.ERROR_USER_NOT_FOUND,null);
+        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ApiResponse<String>> InvalidCredentials(InvalidCredentialsException ex){
+        ApiResponse<String> response = new ApiResponse<>(false,AuthConstants.ERROR_USER_INVALID_CREDENTIALS,null);
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(UserAlreadyExistsException.class)
     public ResponseEntity<ApiResponse<String>> handleUserAlreadyExistsError(UserAlreadyExistsException ex){
         ApiResponse<String> response = new ApiResponse<>(false, AuthConstants.ERROR_USER_ALREADY_EXISTS,ex.getMessage());
+        return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiResponse<String>> handleException(Exception ex){
+        ApiResponse<String> response = new ApiResponse<>(false,ExceptionConstants.UNABLE_TO_PROCESS_REQUEST,null);
         return new ResponseEntity<>(response,HttpStatus.BAD_REQUEST);
     }
 }
