@@ -31,8 +31,8 @@ public class AuthController {
 
     }
     @PostMapping("/admin/login")
-    //@PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<AdminLoginDto>> adminLogin(@Valid @RequestBody AdminLoginDto adminLoginDto){
+//    @PreAuthorize("hasRole('Admin')")
+    public ResponseEntity<ApiResponse<AdminLoginDto>> adminLogin( @RequestBody AdminLoginDto adminLoginDto){
 
         AdminLoginDto adminLoginDtoCon = authServiceImpl.adminLogin(adminLoginDto);
 

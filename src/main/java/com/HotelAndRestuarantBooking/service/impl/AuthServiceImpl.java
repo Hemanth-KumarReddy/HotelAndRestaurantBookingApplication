@@ -8,9 +8,9 @@ import com.HotelAndRestuarantBooking.exception.InvalidCredentialsException;
 import com.HotelAndRestuarantBooking.exception.UserAlreadyExistsException;
 import com.HotelAndRestuarantBooking.exception.UserNotFoundException;
 import com.HotelAndRestuarantBooking.repository.StaffRepository;
+import com.HotelAndRestuarantBooking.security.JwtService;
 import com.HotelAndRestuarantBooking.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,8 @@ import java.util.Optional;
 @Service
 public class AuthServiceImpl implements AuthService {
 
-    public PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     private StaffRepository staffRepository;
